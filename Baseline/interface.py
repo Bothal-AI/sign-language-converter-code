@@ -83,8 +83,10 @@ class SettingsWindow:
         self.top.wm_title("Settings")
 
         # Bring the new window to the front
-        # self.top.attributes("-topmost", False)
         self.top.transient(master) 
+        # self.top.attributes("-topmost", False)
+
+        # Disables home window
         self.top.grab_set()
 
         # Creating grid
