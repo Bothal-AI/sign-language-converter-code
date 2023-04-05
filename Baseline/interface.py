@@ -82,6 +82,11 @@ class SettingsWindow:
         self.top.resizable(False, False)
         self.top.wm_title("Settings")
 
+        # Bring the new window to the front
+        # self.top.attributes("-topmost", False)
+        self.top.transient(master) 
+        self.top.grab_set()
+
         # Creating grid
         self.top.grid_rowconfigure(0, weight=1)
         self.top.grid_columnconfigure(0, weight=1)
