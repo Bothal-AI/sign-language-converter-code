@@ -56,6 +56,7 @@ class MainWindow:
             row=3, column=0, columnspan=1, padx=70, pady=(5, 50), sticky="nsew"
         )
 
+
         def start():
             if master.newWindow is not None:
                 master.newWindow.top.destroy()
@@ -78,7 +79,7 @@ class SettingsWindow:
         self.top = ctk.CTkToplevel()
 
         # Creating window
-        self.top.geometry("300x290")
+        self.top.geometry("300x260")
         self.top.resizable(False, False)
         self.top.wm_title("Settings")
 
@@ -92,7 +93,7 @@ class SettingsWindow:
         # Creating grid
         self.top.grid_rowconfigure(0, weight=1)
         self.top.grid_columnconfigure(0, weight=1)
-
+        
         # fonts
         my_font = ("Helvetica", 14)
         my_font_label = ("Helvetica", 14, "bold")
@@ -106,15 +107,11 @@ class SettingsWindow:
         self.var.set(settings["translation_settings"])
 
         # checkbox btns
-        if settings["gesture_instruction"] is True:
-            self.box1 = ctk.IntVar(value=1)
-        else:
-            self.box1 = ctk.IntVar(value=0)
-
         if settings["text_to_speech"] is True:
-            self.box2 = ctk.IntVar(value=1)
+            self.box = ctk.IntVar(value=1)
         else:
-            self.box2 = ctk.IntVar(value=0)
+            self.box = ctk.IntVar(value=0)
+
 
         # create buttons
         trans_label = ctk.CTkLabel(
@@ -129,21 +126,13 @@ class SettingsWindow:
         features_label = ctk.CTkLabel(
             self.top, text="Additonal Features:", font=my_font_label
         )
-        instruction_check = ctk.CTkCheckBox(
-            self.top,
-            text="Gesture Instruction",
-            font=my_font,
-            onvalue=1,
-            offvalue=0,
-            variable=self.box1,
-        )
         speech_check = ctk.CTkCheckBox(
             self.top,
             text="Text-to-Speech",
             font=my_font,
             onvalue=1,
             offvalue=0,
-            variable=self.box2,
+            variable=self.box,
         )
         cancel = ctk.CTkButton(
             self.top,
@@ -176,9 +165,6 @@ class SettingsWindow:
         features_label.grid(
             row=3, column=0, columnspan=4, rowspan=1, padx=10, pady=10, sticky="nsew"
         )
-        instruction_check.grid(
-            row=4, column=0, columnspan=4, rowspan=1, padx=10, pady=5, sticky="w"
-        )
         speech_check.grid(
             row=5, column=0, columnspan=4, rowspan=1, padx=10, pady=10, sticky="w"
         )
@@ -198,8 +184,7 @@ class SettingsWindow:
             "translation_settings": self.var.get(),
             "on_screen_overlay": self.var.get() == 1,
             "subtitles_text": self.var.get() == 2,
-            "gesture_instruction": self.box1.get() == 1,
-            "text_to_speech": self.box2.get() == 1,
+            "text_to_speech": self.box.get() == 1,
         }
 
         # Save settings to a file or a database
