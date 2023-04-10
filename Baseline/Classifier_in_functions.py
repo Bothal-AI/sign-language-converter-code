@@ -8,7 +8,7 @@ import math
 def main():
     classify()
 
-
+ 
 def classify():
     videoCapture = cv2.VideoCapture(0)
     detect = HandDetector(maxHands=1)
