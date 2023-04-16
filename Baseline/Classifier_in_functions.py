@@ -12,7 +12,7 @@ def classify():
     detect = HandDetector(maxHands=1)
     offsetValue = 25
     imageSize = 300
-    classifier = Classifier("Model/keras_model.h5", "Model/labels.txt")
+    classifier = Classifier("keras_model.h5", "labels.txt")
     labels = ["A", "B", "C", "D", "E"]
 
     while True:
