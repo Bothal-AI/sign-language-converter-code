@@ -16,6 +16,11 @@ def classify():
     labels = ["A", "B", "C", "D", "E"]
 
     while True:
+         # To check if ESC key is pressed
+        key = cv2.waitKey(1) & 0xFF
+        if key == 27:  # If ESC key is pressed
+            break  # Exit the loop
+
         success, image = videoCapture.read()
         imageOutput = image.copy()
         hands = detect.findHands(image, draw=False)
