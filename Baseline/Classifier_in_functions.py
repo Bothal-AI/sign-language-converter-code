@@ -19,7 +19,10 @@ def classify():
          # To check if ESC key is pressed
         key = cv2.waitKey(1) & 0xFF
         if key == 27:  # If ESC key is pressed
+            cv2.destroyAllWindows()
+            videoCapture.release()
             break  # Exit the loop
+            
 
         success, image = videoCapture.read()
         imageOutput = image.copy()
