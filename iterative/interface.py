@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from PIL import Image
-from Classifier_in_functions import classifyAlphabets, classifyNumbers
+from Classifier_in_functions import classifyAlpha
+from Numerical_Classifier_in_functions import classifyNumerical
 
 
 class MainWindow:
@@ -87,9 +88,9 @@ class MainWindow:
 
         def start():
             if master.var.get() == 1:
-                classifyAlphabets()
+                classifyAlpha()
             elif master.var.get() == 2:
-                classifyNumbers()
+                classifyNumerical()
 
         def close():
             master.quit()

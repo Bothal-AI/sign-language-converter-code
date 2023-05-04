@@ -31,10 +31,6 @@ class MainWindow:
         def close():
             master.quit()
 
- 
-        def close():
-            master.quit()
-
 
 def main():
     root = ctk.CTk()
