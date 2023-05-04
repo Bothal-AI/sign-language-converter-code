@@ -6,17 +6,16 @@ import math
 
 
 def main():
-    classifyAlpha()
+    classifyNumerical()
 
 
-def classifyAlpha():
+def classifyNumerical():
     videoCapture = cv2.VideoCapture(0)
     detect = HandDetector(maxHands=1)
     offsetValue = 25
     imageSize = 300
-    classifier = Classifier("Model/keras_model.h5", "Model/labels.txt")
-    labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
-              "V", "W", "X", "Y"]
+    classifier = Classifier("NumbersModel/keras_model.h5", "NumbersModel/labels.txt")
+    labels = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
     while True:
         # To check if ESC key is pressed
@@ -34,9 +33,9 @@ def classifyAlpha():
 
             imageWithBackground = np.ones((imageSize, imageSize, 3), np.uint8) * 255
             imageCropped = image[
-                y - offsetValue : y + h + offsetValue,
-                x - offsetValue : x + w + offsetValue,
-            ]
+                           y - offsetValue: y + h + offsetValue,
+                           x - offsetValue: x + w + offsetValue,
+                           ]
             heightOverWidth = h / w  # aspect ratio
 
             # if statement to keep proportion of images, depending on aspect ratio
@@ -49,7 +48,7 @@ def classifyAlpha():
                 resizedImageShape = resizedImage.shape
                 widthDiff = math.ceil((300 - calculatedWidth) * 0.5)
                 imageWithBackground[
-                    : resizedImageShape[0], widthDiff : calculatedWidth + widthDiff
+                : resizedImageShape[0], widthDiff: calculatedWidth + widthDiff
                 ] = resizedImage
                 prediction, index = classifier.getPrediction(
                     imageWithBackground
@@ -63,7 +62,7 @@ def classifyAlpha():
                 )  # resize the image
                 heightDiff = math.ceil((imageSize - calculatedHeight) * 0.5)
                 imageWithBackground[
-                    heightDiff : calculatedHeight + heightDiff, :
+                heightDiff: calculatedHeight + heightDiff, :
                 ] = resizedImage
                 prediction, index = classifier.getPrediction(
                     imageWithBackground, draw=False
