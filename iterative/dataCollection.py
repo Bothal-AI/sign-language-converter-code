@@ -12,7 +12,7 @@ imageSize = 300
 counter = 0
 
 #Change path for different letters!
-folder = "Data/A"
+folder = "test_images/"
 
 while True:
     #find and capture hand
