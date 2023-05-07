@@ -25,7 +25,7 @@ class MainWindow:
         # create buttons
         master.image = ctk.CTkButton(
             master,
-            text=None,
+            text="",
             fg_color="black",
             hover_color="black",
             height=400,
